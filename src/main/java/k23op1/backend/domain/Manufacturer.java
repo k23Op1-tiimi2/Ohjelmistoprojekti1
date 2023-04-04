@@ -1,4 +1,4 @@
-package main.java.k23op1.backend.domain;
+package k23op1.backend.domain;
 
 import java.util.List;
 
@@ -18,10 +18,14 @@ public class Manufacturer {
     private Long manufacturerid;
     private String name;
 
-    // Category 1--* book
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "manufacturer")
-    @JsonIgnoreProperties("manufacturer")
-    private List<Book> books;
+    // Category 1--* Product
+    /*
+     * @OneToMany(cascade = CascadeType.ALL, mappedBy = "manufacturer")
+     * 
+     * @JsonIgnoreProperties("manufacturer")
+     * private List<Product> products;
+     * 
+     */
 
     public Manufacturer() {
     }
@@ -32,7 +36,7 @@ public class Manufacturer {
     }
 
     public Long getManufacturerid() {
-        return categoryid;
+        return manufacturerid;
     }
 
     public void setManufacturerid(Long manufacturerid) {
