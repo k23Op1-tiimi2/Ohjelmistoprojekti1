@@ -24,7 +24,6 @@ public class Manufacturer {
      * 
      * @JsonIgnoreProperties("manufacturer")
      * private List<Product> products;
-     * 
      */
 
     public Manufacturer() {
@@ -53,7 +52,8 @@ public class Manufacturer {
 
     @Override
     public String toString() {
-        // tänne ei kirjan attribuutteja ikuisen luupin välttämiseksi tietokantahaussa!
+        // tänne ei tuotteen attribuutteja ikuisen luupin välttämiseksi
+        // tietokantahaussa!
         return "Manufacturer [manufacturerid=" + manufacturerid + ", name=" + name + "]";
     }
 

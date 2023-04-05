@@ -1,19 +1,14 @@
 package k23op1.backend.domain;
-import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.OneToMany;
 
 @Entity
 public class Product {
     @Id // primary key
-    @GeneratedValue(strategy = GenereationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private String type;
@@ -31,7 +26,7 @@ public class Product {
         this.price = 0;
     }
 
-    public Product(String name, String type String size, String color, int price) {
+    public Product(String name, String type, String size, String color, int price) {
         super();
         this.name = name;
         this.type = type;
@@ -66,11 +61,11 @@ public class Product {
         this.name = name;
     }
 
-    public String getType(){   
+    public String getType() {
         return type;
     }
 
-    public void setType(String type){
+    public void setType(String type) {
         this.type = type;
     }
 
