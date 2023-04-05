@@ -52,7 +52,7 @@ public class Manufacturer {
 
     @Override
     public String toString() {
-        // tänne ei tuotteen attribuutteja ikuisen luupin välttämiseksi
+        // tänne ei valmistajan attribuutteja ikuisen luupin välttämiseksi
         // tietokantahaussa!
         return "Manufacturer [manufacturerid=" + manufacturerid + ", name=" + name + "]";
     }
