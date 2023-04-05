@@ -14,23 +14,36 @@
 				<th>Size</th>
 				<th>Color</th>
 				<th>Price</th>
-				<th>Action</th>
+				<th>Manufacturer</th>
+				<th>Actions</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="product : ${products}">
-				<td th:text="${product.name}" >
-				<td th:text="${product.type}" >
-				<td th:text="${product.size}" >
-				<td th:text="${product.color}" >
-				<td th:text="${product.price}" >
+				<td th:text="${product.name}" />
+				<td th:text="${product.type}" />
+				<td th:text="${product.size}" />
+				<td th:text="${product.color}" />
+				<td th:text="${product.price}" />
+                <td th:text="${product.manufacturer.name}" />
 				<td>
 					<form th:action="@{/delete/{productId}(productId=${product.id})}" method="get">
-						<button type="submit" class="btn btn-danger">Delete</button>
-					</form>
+                        <button type="submit" class="btn btn-danger">Delete</button>
+                    </form>
+                    
+                    
+                    <form th:action="@{/edit/{productId}(productId=${product.id})}" method="get">
+                        <button type="submit" class="btn btn-danger">Edit</button>
+                    </form>
 				</td>
 			</tr>
 		</tbody>
 	</table>
+	
+	<form th:action="@{/addproduct}" method="get">
+		<button type="submit" class="btn btn-primary">Add</button>
+	</form>
 </body>
 </html>
+
+

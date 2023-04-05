@@ -1,5 +1,12 @@
 package k23op1.backend.domain;
 
+import java.util.List;
+import java.util.Optional;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
+
 //import java.util.List;
 
 //import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
@@ -10,6 +17,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 //import jakarta.persistence.OneToMany;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Manufacturer {
@@ -19,12 +27,12 @@ public class Manufacturer {
     private String name;
 
     // Category 1--* Product
-    /*
-     * @OneToMany(cascade = CascadeType.ALL, mappedBy = "manufacturer")
-     * 
-     * @JsonIgnoreProperties("manufacturer")
-     * private List<Product> products;
-     */
+    
+      @OneToMany(cascade = CascadeType.ALL, mappedBy = "manufacturer")
+      
+     @JsonIgnoreProperties("manufacturer")
+      private List<Product> products;
+     
 
     public Manufacturer() {
     }
@@ -55,6 +63,10 @@ public class Manufacturer {
         // tänne ei valmistajan attribuutteja ikuisen luupin välttämiseksi
         // tietokantahaussa!
         return "Manufacturer [manufacturerid=" + manufacturerid + ", name=" + name + "]";
+    }
+
+    public Optional<Product> findByName(String string) {
+        return null;
     }
 
 }
