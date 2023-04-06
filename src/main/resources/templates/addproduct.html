@@ -26,7 +26,7 @@
 		<label for="manufacturer">Manufacturer:</label>
 		<select id="manufacturer" th:field="*{manufacturer}" class="form-control">
 			<option th:each="manufacturer: ${manufacturers}" th:value="${manufacturer.manufacturerid}"
-				th:text="${manufacturername}"></option>
+				th:text="${manufacturer.name}"></option>
 		</select>
 
 		<button type="submit">Save</button>
