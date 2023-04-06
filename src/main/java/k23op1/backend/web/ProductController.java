@@ -7,13 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.ModelAttribute;
+//import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 //import org.springframework.web.servlet.ModelAndView;
 
-import k23op1.backend.domain.Manufacturer;
 import k23op1.backend.domain.ManufacturerRepository;
 import k23op1.backend.domain.Product;
 import k23op1.backend.domain.ProductRepository;
@@ -58,15 +57,10 @@ public class ProductController {
     @RequestMapping(value = "edit/{id}")
     public String editProduct(@PathVariable("id") Long productId, Model model) {
         System.out.println("controller" + productId);
-        model.addAttribute("product", productRepository.findById(productId));
+        model.addAttribute("product", (productRepository.findById(productId)).get());
         model.addAttribute("manufacturers", manufacturerRepository.findAll());
         return "editproduct";
     }
-
-
-
-    
-
 
     /*
      * @RequestMapping(value = "/edit/{productId}", method = RequestMethod.GET)
