@@ -20,25 +20,14 @@ public class Product {
     private String color;
     private int price;
 
-    
     @ManyToOne
-	 @JsonIgnoreProperties ("products") 
-	@JoinColumn(name = "manufacturerid")  // Foreign key - määritys
-	private Manufacturer manufacturer;
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    public Product() {
-        
-    }
+    @JsonIgnoreProperties("products")
+    @JoinColumn(name = "manufacturerid") // Foreign key - määritys
+    private Manufacturer manufacturer;
 
-   
+    public Product() {
+
+    }
 
     public Product(Long id, String name, String type, String size, String color, int price, Manufacturer manufacturer) {
         super();
@@ -48,7 +37,7 @@ public class Product {
         this.size = size;
         this.color = color;
         this.price = price;
-        this.manufacturer=manufacturer;
+        this.manufacturer = manufacturer;
     }
 
     public Long getId() {
@@ -79,8 +68,6 @@ public class Product {
         return size;
     }
 
-    
-    
     public void setSize(String size) {
         this.size = size;
     }
@@ -101,39 +88,26 @@ public class Product {
         this.price = price;
     }
 
-    public void setManufacturer (Manufacturer manufacturer) {
-		this.manufacturer= manufacturer;
-	}
-    
+    public void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
     public Manufacturer getManufacturer() {
-		return  manufacturer;
-	}
-	
-    
+        return manufacturer;
+    }
+
     @Override
     public String toString() {
-       if(this.manufacturer != null)
-        return "Product [id = " + id + " name = " + name + " type = " + type + " size = " + size + " color = " + color
-                + " price = " + price + "manufacturer=" + manufacturer +"]";
-    
-    
+        if (this.manufacturer != null)
+            return "Product [id = " + id + " name = " + name + " type = " + type + " size = " + size + " color = "
+                    + color
+                    + " price = " + price + "manufacturer=" + manufacturer + "]";
+
         else
-          return "Product [id = " + id + " name = " + name + " type = " + type + " size = " + size + " color = " + color
-          + " price = " + price ;
+            return "Product [id = " + id + " name = " + name + " type = " + type + " size = " + size + " color = "
+                    + color
+                    + " price = " + price;
 
-    
-    
-            }
+    }
 
-    
-    
-    
-    
-    
-    
-    
-   
 }
-
-
-

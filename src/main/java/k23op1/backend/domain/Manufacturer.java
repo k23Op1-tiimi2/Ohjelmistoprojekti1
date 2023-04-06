@@ -6,17 +6,10 @@ import java.util.Optional;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.CascadeType;
-
-//import java.util.List;
-
-//import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-
-//import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-//import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToMany;
 
 @Entity
@@ -26,13 +19,12 @@ public class Manufacturer {
     private Long manufacturerid;
     private String name;
 
-    // Category 1--* Product
-    
-      @OneToMany(cascade = CascadeType.ALL, mappedBy = "manufacturer")
-      
-     @JsonIgnoreProperties("manufacturer")
-      private List<Product> products;
-     
+    // Manufacturer 1--* Product
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "manufacturer")
+
+    @JsonIgnoreProperties("manufacturer")
+    private List<Product> products;
 
     public Manufacturer() {
     }

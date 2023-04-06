@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+//import org.springframework.web.servlet.ModelAndView;
 
 import k23op1.backend.domain.Manufacturer;
 import k23op1.backend.domain.ManufacturerRepository;
@@ -24,30 +24,29 @@ public class ProductController {
 
     @Autowired
     private ManufacturerRepository manufacturerRepository;
-    
+
     @Autowired
     private ProductRepository productRepository;
 
     // Tuotelistaus
-    @RequestMapping(value= "/productlist", method = RequestMethod.GET)
-    public ModelAndView productList() {
+    @RequestMapping(value = "/productlist", method = RequestMethod.GET)
+    public String productList(Model model) {
         List<Product> products = (List<Product>) productRepository.findAll();
-        ModelAndView modelAndView = new ModelAndView("productlist");
-        modelAndView.addObject("products", products);
-        return modelAndView;
+        model.addAttribute("products", products);
+        return "productlist";
+    }
+
+    @RequestMapping(value = "/addproduct", method = RequestMethod.GET)
+    public String addProductForm(Model model) {
+        model.addAttribute("product", new Product());
+        model.addAttribute("manufacturers", manufacturerRepository.findAll());
+        return "addproduct";
     }
 
     @RequestMapping(value = "/delete/{productId}", method = RequestMethod.GET)
     public String deleteProduct(@PathVariable("productId") Long productId) {
         productRepository.deleteById(productId);
         return "redirect:/productlist";
-    }
-
-    @RequestMapping(value = "/addproduct", method = RequestMethod.GET)
-    public ModelAndView addProductForm() {
-        ModelAndView modelAndView = new ModelAndView("addproduct");
-        modelAndView.addObject("product", new Product());
-        return modelAndView;
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
@@ -65,7 +64,8 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/editproduct/{productId}", method = RequestMethod.POST)
-    public String editProductSubmit(@PathVariable("productId") Long productId, @ModelAttribute("product") Product product) {
+    public String editProductSubmit(@PathVariable("productId") Long productId,
+            @ModelAttribute("product") Product product) {
         Product existingProduct = productRepository.findById(productId)
                 .orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + productId));
         existingProduct.setName(product.getName());
@@ -73,9 +73,7 @@ public class ProductController {
         existingProduct.setSize(product.getSize());
         existingProduct.setColor(product.getColor());
         existingProduct.setPrice(product.getPrice());
-    
-       
-        
+
         return "redirect:/productlist";
     }
 }
