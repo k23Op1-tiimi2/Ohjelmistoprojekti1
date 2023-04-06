@@ -38,6 +38,7 @@ public class Manufacturer {
         return manufacturerid;
     }
 
+
     public void setManufacturerid(Long manufacturerid) {
         this.manufacturerid = manufacturerid;
     }
@@ -48,6 +49,14 @@ public class Manufacturer {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
     }
 
     @Override
