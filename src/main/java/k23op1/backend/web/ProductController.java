@@ -63,6 +63,11 @@ public class ProductController {
         return "editproduct";
     }
 
+
+
+    
+
+
     /*
      * @RequestMapping(value = "/edit/{productId}", method = RequestMethod.GET)
      * public String editProductForm(@PathVariable("productId") Long productId,
