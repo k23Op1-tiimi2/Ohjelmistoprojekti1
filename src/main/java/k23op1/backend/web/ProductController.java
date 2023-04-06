@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 //import org.springframework.web.servlet.ModelAndView;
 
-//import k23op1.backend.domain.Manufacturer;
+import k23op1.backend.domain.Manufacturer;
 import k23op1.backend.domain.ManufacturerRepository;
 import k23op1.backend.domain.Product;
 import k23op1.backend.domain.ProductRepository;
@@ -50,14 +50,15 @@ public class ProductController {
     }
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String addProductSubmit(@ModelAttribute("product") Product product) {
+    public String addProduct(Product product) {
         productRepository.save(product);
         return "redirect:/productlist";
     }
 
     @RequestMapping(value = "edit/{id}")
     public String editProduct(@PathVariable("id") Long productId, Model model) {
-        model.addAttribute("products", productRepository.findById(productId));
+        System.out.println("controller" + productId);
+        model.addAttribute("product", productRepository.findById(productId));
         model.addAttribute("manufacturers", manufacturerRepository.findAll());
         return "editproduct";
     }

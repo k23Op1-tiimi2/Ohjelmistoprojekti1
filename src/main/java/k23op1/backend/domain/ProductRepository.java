@@ -1,10 +1,9 @@
 package k23op1.backend.domain;
 
-//import java.util.List;
-import java.util.Optional;
+import java.util.List;
 
 import org.springframework.data.repository.CrudRepository;
 
 public interface ProductRepository extends CrudRepository<Product, Long> {
-    Optional<Product> findById(Long productId);
+    // List<Product> findById(Long productId);
 }
