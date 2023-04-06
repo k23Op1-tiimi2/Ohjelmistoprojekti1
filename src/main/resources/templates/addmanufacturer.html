@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="ISO-8859-1">
+    <title>Add Manufacturer</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+    <div class="container">
+        <h2>Add a manufacturer</h2>
+        <div class="col-md-4">
+            <form th:object="${manufacturer}" th:action="@{savemanufacturer}" action="#" method="post">
+                <label for="name">Manufacturer Name</label>
+                <input type="text" id="ManufacturerName" th:field="*{name}" class="form-control" />
+                <div style="clear: both; display: block; height: 10px;"></div>
+                <input type="submit" class="btn btn-primary" value="Save"></input>
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

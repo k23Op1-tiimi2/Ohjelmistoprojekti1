@@ -1,6 +1,5 @@
 package k23op1.backend;
 
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
@@ -13,7 +12,6 @@ import k23op1.backend.domain.ManufacturerRepository;
 import k23op1.backend.domain.Product;
 import k23op1.backend.domain.ProductRepository;
 
-
 @SpringBootApplication
 public class BackendApplication {
 
@@ -23,46 +21,22 @@ public class BackendApplication {
 		SpringApplication.run(BackendApplication.class, args);
 	}
 
-	
-	
-	
+	@Bean
+	public CommandLineRunner demo(ProductRepository productRepository, ManufacturerRepository manufacturerRepository) {
 
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-@Bean
-public CommandLineRunner demo(ProductRepository productRepository, ManufacturerRepository manufacturerRepository) {
-    
-	
-	
-	
-	
-	
-	
-	
-	return (args) -> {
-        Manufacturer manufacturer1 = new Manufacturer("Adidas");
-        Manufacturer manufacturer2 = new Manufacturer("Puma");
-       manufacturerRepository.save(manufacturer1);
-	   manufacturerRepository.save(manufacturer2);
+		return (args) -> {
+			Manufacturer manufacturer1 = new Manufacturer("Adidas");
+			Manufacturer manufacturer2 = new Manufacturer("Puma");
+			manufacturerRepository.save(manufacturer1);
+			manufacturerRepository.save(manufacturer2);
 
-		productRepository.save(new Product((long) 0, "Kiva", "shirt", "M", "blue", 15, manufacturer1));
-	    productRepository.save(new Product((long) 0, "Ok", "shirt", "M", "red", 10, manufacturer2));
-	 
-	   
-      
+			productRepository.save(new Product((long) 0, "Kiva", "shirt", "M", "blue", 15, manufacturer1));
+			productRepository.save(new Product((long) 0, "Ok", "shirt", "M", "red", 10, manufacturer2));
 
-        for (Product product : productRepository.findAll()) {
-            log.info(product.toString());
-        }
-    };
-}
+			for (Product product : productRepository.findAll()) {
+				log.info(product.toString());
+			}
+		};
+	}
 
 }
