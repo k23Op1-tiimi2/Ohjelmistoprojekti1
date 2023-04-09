@@ -11,12 +11,15 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 public class Manufacturer {
     @Id // Primary key -määritys
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @NotNull
     private Long manufacturerid;
+    @NotNull
     private String name;
 
     // Manufacturer 1--* Product
@@ -37,7 +40,6 @@ public class Manufacturer {
     public Long getManufacturerid() {
         return manufacturerid;
     }
-
 
     public void setManufacturerid(Long manufacturerid) {
         this.manufacturerid = manufacturerid;
