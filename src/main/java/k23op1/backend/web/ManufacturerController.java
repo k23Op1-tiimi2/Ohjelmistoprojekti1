@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -21,7 +22,7 @@ public class ManufacturerController {
     public String manufacturerList(Model model) {
         List<Manufacturer> manufacturers = (List<Manufacturer>) manufacturerRepository.findAll();
         model.addAttribute("manufacturers", manufacturers);
-        return "addmanufacturer";
+        return "manufacturerlist";
     }
 
     // valmistajan lisääminen
@@ -36,5 +37,11 @@ public class ManufacturerController {
     public String saveManufacturer(Manufacturer manufacturer) {
         manufacturerRepository.save(manufacturer);
         return "redirect:manufacturerlist";
+    }
+
+    @RequestMapping(value = "/deletemanufacturer/{manufacturerid}", method = RequestMethod.GET)
+    public String deleteManufacturer(@PathVariable("manufacturerid") Long manufacturerid) {
+        manufacturerRepository.deleteById(manufacturerid);
+        return "redirect:/manufacturerlist"; // jostain syystä menee productlistiin, apuja tähän
     }
 }
