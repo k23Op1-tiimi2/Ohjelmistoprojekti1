@@ -16,7 +16,7 @@
             <tr th:each="manufacturer: ${manufacturers}">
                 <td th:text="${manufacturer.name}">Manufacturer name</td>
                 <td>
-                    <form th:action="@{/delete/{manufacturerid}(manufacturerid=${manufacturer.manufacturerid})}"
+                    <form th:action="@{/deletemanufacturer/{manufacturerid}(manufacturerid=${manufacturer.manufacturerid})}"
                         method="get">
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
