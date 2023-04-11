@@ -1,9 +1,8 @@
 package k23op1.backend.web;
 
+import java.util.Arrays;
 import java.util.List;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -16,8 +15,6 @@ import k23op1.backend.domain.ProductRepository;
 
 @RestController
 public class RestOrController {
-
-    private static final Logger log = LoggerFactory.getLogger(RestController.class);
     
     @Autowired
     ProductRepository productRepository;
@@ -36,4 +33,10 @@ public class RestOrController {
      public @ResponseBody List<Manufacturer> findAllManufaccturers() {
          return (List<Manufacturer>) manufacturerRepository.findAll();
      }
+
+     // REST-metodi, find all products where type=jacket/coat
+     @GetMapping(value = "/jackets")
+    public @ResponseBody List<Product> findAllJackets() {
+        return (List<Product>) productRepository.findByTypeIn(Arrays.asList("jacket", "coat"));
+}
 }

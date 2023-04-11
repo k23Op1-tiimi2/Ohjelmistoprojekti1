@@ -30,8 +30,8 @@ public class BackendApplication {
 			manufacturerRepository.save(manufacturer1);
 			manufacturerRepository.save(manufacturer2);
 
-			productRepository.save(new Product((long) 0, "Kiva", "shirt", "M", "blue", 15, manufacturer1));
-			productRepository.save(new Product((long) 0, "Ok", "shirt", "M", "red", 10, manufacturer2));
+			productRepository.save(new Product("Kiva", "shirt", "M", "blue", 15.15, manufacturer1));
+			productRepository.save(new Product("Ok", "shirt", "M", "red", 10.10, manufacturer2));
 
 			for (Product product : productRepository.findAll()) {
 				log.info(product.toString());

@@ -6,15 +6,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
 //import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 //import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.bind.annotation.ResponseBody;
 
-import k23op1.backend.domain.Manufacturer;
 import k23op1.backend.domain.ManufacturerRepository;
 import k23op1.backend.domain.Product;
 import k23op1.backend.domain.ProductRepository;
@@ -94,16 +91,4 @@ public class ProductController {
      * return "redirect:/productlist";
      * }
      */
-
-    // REST-metodi, find all products
-    @GetMapping(value = "/products")
-    public @ResponseBody List<Product> findAllProducts() {
-        return (List<Product>) productRepository.findAll();
-    }
-
-    // REST-metodi, find all manufacturers
-    @GetMapping(value = "/manufacturers")
-    public @ResponseBody List<Manufacturer> findAllManufaccturers() {
-        return (List<Manufacturer>) manufacturerRepository.findAll();
-    }
 }

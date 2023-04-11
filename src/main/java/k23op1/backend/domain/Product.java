@@ -21,7 +21,7 @@ public class Product {
     private String type;
     private String size;
     private String color;
-    private int price;
+    private double price;
 
     @ManyToOne
     @JsonIgnoreProperties("products")
@@ -32,9 +32,8 @@ public class Product {
 
     }
 
-    public Product(Long id, String name, String type, String size, String color, int price, Manufacturer manufacturer) {
+    public Product(String name, String type, String size, String color, double price, Manufacturer manufacturer) {
         super();
-        this.id = id;
         this.name = name;
         this.type = type;
         this.size = size;
@@ -83,11 +82,11 @@ public class Product {
         this.color = color;
     }
 
-    public int getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(int price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
