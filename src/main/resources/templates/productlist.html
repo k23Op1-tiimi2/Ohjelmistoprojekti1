@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
 <head>
 	<title>Product List</title>
 	
@@ -20,12 +21,12 @@
 		</thead>
 		<tbody>
 			<tr th:each="product : ${products}">
-				<td th:text="${product.name}" />
-				<td th:text="${product.type}" />
-				<td th:text="${product.size}" />
-				<td th:text="${product.color}" />
-				<td th:text="${product.price}" />
-                <td th:text="${product.manufacturer.name}" />
+				<td th:text="${product.name}"></td>
+				<td th:text="${product.type}"></td>
+				<td th:text="${product.size}" ></td>
+				<td th:text="${product.color}"></td>
+				<td th:text="${product.price}"></td>
+                <td th:text="${product.manufacturer.name}" ></td>
 				<td>
 					<form th:action="@{/delete/{productId}(productId=${product.id})}" method="get">
                         <button type="submit" class="btn btn-danger">Delete</button>
@@ -33,7 +34,7 @@
                     
                     
                     <form th:action="@{/edit/{productId}(productId=${product.id})}" method="get">
-                        <button type="submit" class="btn btn-danger">Edit</button>
+                        <button type="submit" class="btn btn-primary">Edit</button>
                     </form>
 				</td>
 			</tr>
