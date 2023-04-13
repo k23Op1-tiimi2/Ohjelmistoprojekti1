@@ -1,10 +1,10 @@
 package k23op1.backend.web;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -35,8 +35,16 @@ public class RestOrController {
      }
 
      // REST-metodi, find all products where type=jacket/coat
-     @GetMapping(value = "/jackets")
+   /*  @GetMapping(value = "/jackets")
     public @ResponseBody List<Product> findAllJackets() {
         return (List<Product>) productRepository.findByTypeIn(Arrays.asList("jacket", "coat"));
+    } */
+
+    // REST-metodi, find one type
+    @GetMapping("/products/type/{type}")
+    List<Product> getCarByBrand(@PathVariable String type) {
+        
+        return productRepository.findByType(type);
+    }
 }
-}
+

@@ -10,4 +10,6 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     // List<Product> findById(Long productId);
     
     List<Product> findByTypeIn(List<String> asList);
+
+    List<Product> findByType(String string);
 }
