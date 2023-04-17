@@ -12,4 +12,6 @@ public interface ProductRepository extends CrudRepository<Product, Long> {
     List<Product> findByTypeIn(List<String> asList);
 
     List<Product> findByType(String string);
+
+    List<Product> findByNameContainingIgnoreCase(String string);
 }

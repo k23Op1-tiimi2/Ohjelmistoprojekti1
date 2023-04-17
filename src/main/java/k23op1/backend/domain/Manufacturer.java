@@ -72,4 +72,8 @@ public class Manufacturer {
         return null;
     }
 
+    public Long getId() {
+        return manufacturerid;
+    }
+
 }
