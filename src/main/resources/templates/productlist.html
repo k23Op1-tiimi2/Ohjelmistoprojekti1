@@ -26,15 +26,23 @@
 				<td th:text="${product.size}" ></td>
 				<td th:text="${product.color}"></td>
 				<td th:text="${product.price}"></td>
-                <td th:text="${product.manufacturer.name}" ></td>
+                <td th:text="${product.manufacturer.name}" ></td> 
+				
+				
+				
+				
+				
 				<td>
 					<form th:action="@{/delete/{productId}(productId=${product.id})}" method="get">
                         <button type="submit" class="btn btn-danger">Delete</button>
                     </form>
                     
-                    
                     <form th:action="@{/edit/{productId}(productId=${product.id})}" method="get">
                         <button type="submit" class="btn btn-primary" style="margin: 10px;">Edit</button>
+                    </form>
+                    
+                    <form th:action="@{/product/{productId}(productId=${product.id})}" method="get">
+                        <button type="submit" class="btn btn-info" style="margin: 10px;">Details</button>
                     </form>
 				</td>
 			</tr>
@@ -50,5 +58,3 @@
 	
 </body>
 </html>
-
-
