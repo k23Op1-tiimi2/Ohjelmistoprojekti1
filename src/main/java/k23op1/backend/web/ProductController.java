@@ -33,6 +33,11 @@ public class ProductController {
     @Autowired
     private ProductRepository productRepository;
 
+    @RequestMapping("/")
+    public void handleRequest() {
+        throw new RuntimeException("Page is not found or it is under construction");
+    }
+
     // Tuotelistaus
     @RequestMapping(value = "/productlist", method = RequestMethod.GET)
     public String productList(Model model) {
