@@ -21,11 +21,13 @@ public class Product {
     private String type;
     private String size;
     private String color;
+    @NotNull
     private double price;
 
     @ManyToOne
     @JsonIgnoreProperties("products")
     @JoinColumn(name = "manufacturerid") // Foreign key - määritys
+    @NotNull
     private Manufacturer manufacturer;
 
     public Product() {

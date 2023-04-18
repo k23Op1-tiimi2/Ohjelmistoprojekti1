@@ -5,13 +5,16 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.ModelAttribute;
 //import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 //import org.springframework.web.servlet.ModelAndView;
 
+import jakarta.validation.Valid;
 import k23op1.backend.domain.ManufacturerRepository;
 import k23op1.backend.domain.Product;
 import k23op1.backend.domain.ProductRepository;
@@ -46,6 +49,19 @@ public class ProductController {
         productRepository.deleteById(productId);
         return "redirect:/productlist";
     }
+
+    /*
+     * @RequestMapping(value = "/save", method = RequestMethod.POST)
+     * public String addProduct(@Valid @ModelAttribute("product") Product product,
+     * BindingResult bindingResult,
+     * Model model) {
+     * if (bindingResult.hasErrors()) {
+     * return "addproduct";
+     * }
+     * productRepository.save(product);
+     * return "redirect:/productlist";
+     * }
+     */
 
     @RequestMapping(value = "/save", method = RequestMethod.POST)
     public String addProduct(Product product) {
