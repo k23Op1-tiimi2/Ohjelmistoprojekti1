@@ -4,8 +4,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.builder.SpringApplicationBuilder;
-import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
 import org.springframework.context.annotation.Bean;
 import org.springframework.boot.CommandLineRunner;
 
@@ -15,12 +13,7 @@ import k23op1.backend.domain.Product;
 import k23op1.backend.domain.ProductRepository;
 
 @SpringBootApplication
-public class BackendApplication extends SpringBootServletInitializer {
-	@Override
-	protected SpringApplicationBuilder configure(SpringApplicationBuilder builder) {
-		return builder.sources(BackendApplication.class);
-	}
-
+public class BackendApplication {
 	private static final Logger log = LoggerFactory.getLogger(BackendApplication.class);
 
 	public static void main(String[] args) {
@@ -36,8 +29,9 @@ public class BackendApplication extends SpringBootServletInitializer {
 			manufacturerRepository.save(manufacturer1);
 			manufacturerRepository.save(manufacturer2);
 
-			productRepository.save(new Product("Kiva", "shirt", "M", "blue", 15.15, "Finland" , "Joku paita" , manufacturer1));
-			productRepository.save(new Product("Ok", "shirt", "M", "red", 10.10,"Sweden" , "någontin" , manufacturer2));
+			productRepository
+					.save(new Product("Kiva", "shirt", "M", "blue", 15.15, "Finland", "Joku paita", manufacturer1));
+			productRepository.save(new Product("Ok", "shirt", "M", "red", 10.10, "Sweden", "någontin", manufacturer2));
 
 			for (Product product : productRepository.findAll()) {
 				log.info(product.toString());
