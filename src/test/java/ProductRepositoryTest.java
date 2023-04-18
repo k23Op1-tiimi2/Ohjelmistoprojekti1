@@ -38,7 +38,7 @@ public void createNewProduct() {
    Manufacturer manufacturer1= new Manufacturer("Dog clothes oy");
    manufacturerRepository.save(manufacturer1);
     
-   Product product1 = new Product("Jotain", "Valjaat", "M", "Yellow", 13.0, manufacturer1);
+   Product product1 = new Product("Jotain", "Valjaat", "M", "Yellow", 13.0, "blaa" , "blaa" , manufacturer1);
    
     //Book book = new Book(1, "Idiootti", "Fjodor Dostojevski", 1868 , "978-951-1-26266-4", 9.90, null);
     
@@ -58,7 +58,7 @@ public void deleteNewProduct () {
     Manufacturer manufacturer1= new Manufacturer("Dog clothes oy");
     manufacturerRepository.save(manufacturer1);
      
-    Product product1 = new Product("Jotain", "Valjaat", "M", "Yellow", 13.0, manufacturer1);
+    Product product1 = new Product("Jotain", "Valjaat", "M", "Yellow", 13.0, "blaa" , "blaa" , manufacturer1);
     
     productRepository.save(product1);
 
@@ -76,7 +76,7 @@ public void searchByName (){
     Manufacturer manufacturer1= new Manufacturer("Dog clothes oy");
     manufacturerRepository.save(manufacturer1);
      
-    Product product1 = new Product("Jotain", "Valjaat", "M", "Yellow", 13.0, manufacturer1);
+    Product product1 = new Product("Jotain", "Valjaat", "M", "Yellow", 13.0, "blaa" , "blaa", manufacturer1);
     
     productRepository.save(product1);
 
@@ -86,7 +86,7 @@ public void searchByName (){
     Manufacturer manufacturer2= new Manufacturer("Clothes");
     manufacturerRepository.save(manufacturer2);
      
-    Product product2 = new Product("Tuote", "Hihna", "M", "Blue", 13.0, manufacturer2);
+    Product product2 = new Product("Tuote", "Hihna", "M", "Blue", 13.0, "blaa" , "blaa", manufacturer2);
     
     productRepository.save(product2);
    

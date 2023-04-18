@@ -1,6 +1,7 @@
 package k23op1.backend.web;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -113,4 +114,30 @@ public class ProductController {
      * return "redirect:/productlist";
      * }
      */
-}
+
+
+     @RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
+     public String showProduct(@PathVariable("id") Long productId, Model model) {
+         
+        model.addAttribute("product", (productRepository.findById(productId)).get());
+        return "product";
+         
+    
+     }
+    
+
+     @RequestMapping(value = "/manufacturer/{id}", method = RequestMethod.GET)
+     public String showManufacturer(@PathVariable("id") Long productId, Model model) {
+         
+        model.addAttribute("manufacturer", (productRepository.findById(productId)).get());
+        return "product";
+         
+    
+     }
+
+
+
+    }
+
+
+ 

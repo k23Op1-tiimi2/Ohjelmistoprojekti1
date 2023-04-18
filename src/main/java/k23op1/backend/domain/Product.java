@@ -24,7 +24,11 @@ public class Product {
     private String color;
     @NotNull
     private double price;
-
+    private String countryofproduction;
+    private String description;
+    
+    
+    
     @ManyToOne
     @JsonIgnoreProperties("products")
     @JoinColumn(name = "manufacturerid") // Foreign key - määritys
@@ -35,13 +39,15 @@ public class Product {
 
     }
 
-    public Product(String name, String type, String size, String color, double price, Manufacturer manufacturer) {
+    public Product(String name, String type, String size, String color, double price, String countryofproduction,  String description,  Manufacturer manufacturer) {
         super();
         this.name = name;
         this.type = type;
         this.size = size;
         this.color = color;
         this.price = price;
+        this.countryofproduction=countryofproduction;
+        this.description=description;
         this.manufacturer = manufacturer;
     }
 
@@ -93,6 +99,28 @@ public class Product {
         this.price = price;
     }
 
+    
+    public void setCountryofproduction (String countryofproduction){
+        this.countryofproduction=countryofproduction;
+    }
+    
+    public String getCountryofproduction() {
+        return countryofproduction;
+    }
+    
+    
+    
+    public void setDescription (String description){
+        this.description=description;
+    }
+    
+    public String getDescription() {
+        return description;
+    }
+    
+    
+    
+    
     public void setManufacturer(Manufacturer manufacturer) {
         this.manufacturer = manufacturer;
     }
@@ -106,12 +134,12 @@ public class Product {
         if (this.manufacturer != null)
             return "Product [id = " + id + " name = " + name + " type = " + type + " size = " + size + " color = "
                     + color
-                    + " price = " + price + "manufacturer=" + manufacturer + "]";
+                    + " price = " + price + "countryofproduction = " + countryofproduction + "description = " + description + "manufacturer=" + manufacturer + "]";
 
         else
             return "Product [id = " + id + " name = " + name + " type = " + type + " size = " + size + " color = "
                     + color
-                    + " price = " + price;
+                    + " price = " + price + "countryofproduction = " + countryofproduction + "description = " + description ;
 
     }
 
