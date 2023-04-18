@@ -8,6 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 
 @Entity
@@ -16,7 +17,7 @@ public class Product {
     @GeneratedValue(strategy = GenerationType.AUTO)
     @NotNull
     private Long id;
-    @NotNull
+    @NotEmpty(message = "Name cannot be empty")
     private String name;
     private String type;
     private String size;
@@ -27,7 +28,7 @@ public class Product {
     @ManyToOne
     @JsonIgnoreProperties("products")
     @JoinColumn(name = "manufacturerid") // Foreign key - määritys
-    @NotNull
+    // @NotEmpty(message = "Manufacrurer cannot be empty")
     private Manufacturer manufacturer;
 
     public Product() {

@@ -2,6 +2,8 @@ package k23op1.backend.web;
 
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -22,6 +24,8 @@ import k23op1.backend.domain.ProductRepository;
 @CrossOrigin
 @Controller
 public class ProductController {
+
+    private static final Logger log = LoggerFactory.getLogger(ProductController.class);
 
     @Autowired
     private ManufacturerRepository manufacturerRepository;
@@ -50,24 +54,26 @@ public class ProductController {
         return "redirect:/productlist";
     }
 
+    @RequestMapping(value = "/save", method = RequestMethod.POST)
+    public String addProduct(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult,
+            Model model) {
+        if (bindingResult.hasErrors()) {
+            log.info("Error");
+            model.addAttribute("manufacturers", manufacturerRepository.findAll());
+            return "addproduct";
+        }
+        log.info("product" + product);
+        productRepository.save(product);
+        return "redirect:/productlist";
+    }
+
     /*
      * @RequestMapping(value = "/save", method = RequestMethod.POST)
-     * public String addProduct(@Valid @ModelAttribute("product") Product product,
-     * BindingResult bindingResult,
-     * Model model) {
-     * if (bindingResult.hasErrors()) {
-     * return "addproduct";
-     * }
+     * public String addProduct(Product product) {
      * productRepository.save(product);
      * return "redirect:/productlist";
      * }
      */
-
-    @RequestMapping(value = "/save", method = RequestMethod.POST)
-    public String addProduct(Product product) {
-        productRepository.save(product);
-        return "redirect:/productlist";
-    }
 
     @RequestMapping(value = "edit/{id}")
     public String editProduct(@PathVariable("id") Long productId, Model model) {
