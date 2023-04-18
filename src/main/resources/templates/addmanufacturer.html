@@ -10,6 +10,9 @@
 <body>
     <div class="container">
         <h2>Add a manufacturer</h2>
+        <a th:href="@{/productlist}" style="margin: 10px;">
+            <button style="padding: 5px; margin: 10px;" class="btn btn-primary">Main page</button>
+        </a>
         <div class="col-md-4">
             <form th:object="${manufacturer}" th:action="@{savemanufacturer}" action="#" method="post">
                 <label for="name">Manufacturer Name</label>

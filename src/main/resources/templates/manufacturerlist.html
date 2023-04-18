@@ -12,7 +12,7 @@
 <body>
     <h1>Manufacturer list</h1>
     <table class="table table striped">
-        <tbody>
+        <tbody>            
             <tr th:each="manufacturer: ${manufacturers}">
                 <td th:text="${manufacturer.name}">Manufacturer name</td>
                 <td>

@@ -8,6 +8,9 @@
 
 <body>
 	<h1>Add Product</h1>
+	<a th:href="@{/productlist}" style="margin: 10px;">
+		<button style="padding: 5px; margin: 10px;" class="btn btn-primary">Main page</button>
+	</a>
 	<form th:action="@{/save}" th:object="${product}" method="post">
 		<label for="name">Name:</label>
 		<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</div>
