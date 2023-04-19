@@ -33,9 +33,9 @@
 				
 				
 				<td>
-					<form th:action="@{/delete/{productId}(productId=${product.id})}" method="get">
-                        <button type="submit" class="btn btn-danger">Delete</button>
-                    </form>
+					<form th:action="@{/delete/{productId}(productId=${product.id})}" method="get" onsubmit="return confirm('Are you sure you want to delete this product?')">
+						<button type="submit" class="btn btn-danger" style="margin: 10px;">Delete</button>
+					</form>
                     
                     <form th:action="@{/edit/{productId}(productId=${product.id})}" method="get">
                         <button type="submit" class="btn btn-primary" style="margin: 10px;">Edit</button>
