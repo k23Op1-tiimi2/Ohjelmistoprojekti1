@@ -15,7 +15,6 @@ import jakarta.validation.constraints.NotNull;
 public class Product {
     @Id // primary key
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
     private Long id;
     @NotEmpty(message = "Name cannot be empty")
     private String name;

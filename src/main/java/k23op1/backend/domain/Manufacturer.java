@@ -17,7 +17,6 @@ import jakarta.validation.constraints.NotNull;
 public class Manufacturer {
     @Id // Primary key -määritys
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @NotNull
     private Long manufacturerid;
     @NotNull
     private String name;
