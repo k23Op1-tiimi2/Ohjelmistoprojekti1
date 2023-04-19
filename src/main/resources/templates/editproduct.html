@@ -28,6 +28,12 @@
 		<label for="price">Price:</label>
 		<input type="text" id="price" name="price" th:value="${product.price}" required><br><br>
 
+		<label for="Countryofproduction">Countryofproduction:</label>
+		<input type="text" id="Countryofproduction" name="price" th:value="${product.countryofproduction}" required><br><br>
+
+		<label for="description">Description:</label>
+		<input type="text" id="description" name="description" th:value="${product.description}" required><br><br>
+
 		<label for="Manufacturer">Manufacturer</label>
 		<select id="manufacturerlist" th:field="${product.manufacturer}" class="form-control">
 			<option th:each="manufacturer: ${manufacturers}" th:value="${manufacturer.manufacturerid}"
