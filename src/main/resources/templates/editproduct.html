@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
 <head>
 	<title>Edit Product</title>
 </head>
@@ -14,25 +15,27 @@
 		<input type="hidden" id="id" th:field="*{id}" class="form-control">
 
 		<label for="name">Name:</label>
-		<input type="text" id="name" name="name" th:value="*{name}" required><br><br>
+		<div th:if="${#fields.hasErrors('name')}" th:errors="*{name}">Error</div>
+		<input type="text" id="name" name="name" th:value="*{name}" <br><br>
 
 		<label for="type">Type:</label>
-		<input type="text" id="type" name="type" th:value="*{type}" required><br><br>
+		<input type="text" id="type" name="type" th:value="*{type}" <br><br>
 
 		<label for="size">Size:</label>
-		<input type="text" id="size" name="size" th:value="${product.size}" required><br><br>
+		<input type="text" id="size" name="size" th:value="${product.size}" <br><br>
 
 		<label for="color">Color:</label>
-		<input type="text" id="color" name="color" th:value="${product.color}" required><br><br>
+		<input type="text" id="color" name="color" th:value="${product.color}" <br><br>
 
 		<label for="price">Price:</label>
-		<input type="text" id="price" name="price" th:value="${product.price}" required><br><br>
+		<div th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Error</div>
+		<input type="text" id="price" name="price" th:value="${product.price}" <br><br>
 
-		<label for="Countryofproduction">Countryofproduction:</label>
-		<input type="text" id="Countryofproduction" name="price" th:value="${product.countryofproduction}" required><br><br>
+		<label for="Countryofproduction">Country of production:</label>
+		<input type="text" id="Countryofproduction" name="price" th:value="${product.countryofproduction}"><br><br>
 
 		<label for="description">Description:</label>
-		<input type="text" id="description" name="description" th:value="${product.description}" required><br><br>
+		<input type="text" id="description" name="description" th:value="${product.description}"><br><br>
 
 		<label for="Manufacturer">Manufacturer</label>
 		<select id="manufacturerlist" th:field="${product.manufacturer}" class="form-control">
@@ -43,7 +46,7 @@
 
 
 		<button type="submit">Update</button>
-		<button type="button" onClick="window.history.back()">Cancel</button>	
+		<button type="button" onClick="window.history.back()">Cancel</button>
 	</form>
 </body>
 

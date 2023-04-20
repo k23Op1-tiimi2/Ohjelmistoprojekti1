@@ -82,8 +82,14 @@ public class ProductController {
      */
 
     @RequestMapping(value = "edit/{id}")
-    public String editProduct(@PathVariable("id") Long productId, Model model) {
+    public String editProduct(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult,
+            @PathVariable("id") Long productId, Model model) {
         System.out.println("controller" + productId);
+        if (bindingResult.hasErrors()) {
+            log.info("Error");
+            model.addAttribute("manufacturers", manufacturerRepository.findAll());
+            return "editproduct";
+        }
         model.addAttribute("product", (productRepository.findById(productId)).get());
         model.addAttribute("manufacturers", manufacturerRepository.findAll());
         return "editproduct";
@@ -120,29 +126,20 @@ public class ProductController {
      * }
      */
 
+    @RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
+    public String showProduct(@PathVariable("id") Long productId, Model model) {
 
-     @RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
-     public String showProduct(@PathVariable("id") Long productId, Model model) {
-         
         model.addAttribute("product", (productRepository.findById(productId)).get());
         return "product";
-         
-    
-     }
-    
-
-     @RequestMapping(value = "/manufacturer/{id}", method = RequestMethod.GET)
-     public String showManufacturer(@PathVariable("id") Long productId, Model model) {
-         
-        model.addAttribute("manufacturer", (productRepository.findById(productId)).get());
-        return "product";
-         
-    
-     }
-
-
 
     }
 
+    @RequestMapping(value = "/manufacturer/{id}", method = RequestMethod.GET)
+    public String showManufacturer(@PathVariable("id") Long productId, Model model) {
 
- 
+        model.addAttribute("manufacturer", (productRepository.findById(productId)).get());
+        return "product";
+
+    }
+
+}
