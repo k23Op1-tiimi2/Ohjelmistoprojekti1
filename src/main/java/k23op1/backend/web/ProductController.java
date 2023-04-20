@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 //import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 //import org.springframework.web.servlet.ModelAndView;
 
 import jakarta.validation.Valid;
+import k23op1.backend.domain.Manufacturer;
 import k23op1.backend.domain.ManufacturerRepository;
 import k23op1.backend.domain.Product;
 import k23op1.backend.domain.ProductRepository;
@@ -140,6 +142,15 @@ public class ProductController {
         model.addAttribute("manufacturer", (productRepository.findById(productId)).get());
         return "product";
 
+    }
+
+    @GetMapping("/productsbymanufacturer/{id}")
+    public String getProductsByManufacturer(@PathVariable("id") Long id, Model model) {
+        Manufacturer manufacturer = manufacturerRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid manufacturer Id:" + id));
+        List<Product> products = productRepository.findByManufacturer(manufacturer);
+        model.addAttribute("products", products);
+        return "productsbymanufacturer";
     }
 
 }

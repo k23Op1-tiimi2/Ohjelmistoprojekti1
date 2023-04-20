@@ -8,10 +8,12 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface ProductRepository extends CrudRepository<Product, Long> {
     // List<Product> findById(Long productId);
-    
+
     List<Product> findByTypeIn(List<String> asList);
 
     List<Product> findByType(String string);
 
     List<Product> findByNameContainingIgnoreCase(String string);
+
+    List<Product> findByManufacturer(Manufacturer manufacturer);
 }

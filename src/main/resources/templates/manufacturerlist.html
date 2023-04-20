@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
 <head>
     <meta charset="ISO-8859-1">
     <link type="text/css" rel="stylesheet" href="/css/css/bootstrap.min.css" th:href="@{/css/css/bootstrap.min.css}" />
@@ -12,14 +13,26 @@
 <body>
     <h1>Manufacturer list</h1>
     <table class="table table striped">
-        <tbody>            
+        <tbody>
             <tr th:each="manufacturer: ${manufacturers}">
                 <td th:text="${manufacturer.name}">Manufacturer name</td>
                 <td>
-                    <form th:action="@{/deletemanufacturer/{manufacturerid}(manufacturerid=${manufacturer.manufacturerid})}"
+                    <form
+                        th:action="@{/editmanufacturer/{manufacturerid}(manufacturerid=${manufacturer.manufacturerid})}"
                         method="get">
-                        <button type="submit" class="btn btn-danger">Delete</button>
+                        <button type="submit" class="btn btn-primary" style="margin: 10px;">Edit</button>
                     </form>
+                    <form
+                        th:action="@{/deletemanufacturer/{manufacturerid}(manufacturerid=${manufacturer.manufacturerid})}"
+                        method="get">
+                        <button type="submit" class="btn btn-danger" style="margin: 10px;">Delete</button>
+                    </form>
+                    <form
+                        th:action="@{/productsbymanufacturer/{manufacturerid}(manufacturerid=${manufacturer.manufacturerid})}"
+                        method="get">
+                        <button type="submit" class="btn btn-primary" style="margin: 10px;">Products</button>
+                    </form>
+
                 </td>
             </tr>
         </tbody>
