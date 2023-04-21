@@ -153,4 +153,10 @@ public class ProductController {
         return "productsbymanufacturer";
     }
 
+
+    @RequestMapping("/homepage")
+    public String homePage() {
+        return "homepage";
+    }
+
 }

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
+<head>
+    <meta charset="ISO-8859-1">
+    <link type="text/css" rel="stylesheet" href="/css/css/bootstrap.min.css" th:href="@{/css/css/bootstrap.min.css}" />
+    <title>Main page</title>
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+
+<body>
+
+    <nav th:fragment="navbar" class="navbar navbar-expand-lg bg-dark navbar-dark">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <a class="navbar-brand text-light">Home page</a>
+            </div>
+            <ul class="nav navbar-nav mr-auto" > 
+                <li><a class="nav-link" th:href="@{/productlist}">Productlist</a></li>
+    
+                <li><a class="nav-link" th:href="@{/manufacturerlist}">Manufacturerlist</a></li>    
+               
+            </ul>
+        </div>    
+    </nav>
+    <h1 style="margin-left: 30px;">Main page</h1>
+
+    
+    
+
+</body>
+
+</html>

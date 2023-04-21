@@ -8,7 +8,7 @@
 
 <body>
 	<h1>Edit Product</h1>
-	<a th:href="@{/productlist}" style="margin: 10px;">
+	<a th:href="@{/homepage}" style="margin: 10px;">
 		<button style="padding: 5px; margin: 10px;" class="btn btn-primary">Main page</button>
 	</a>
 	<form th:object="${product}" th:action="@{../save}" action="#" method="post">
