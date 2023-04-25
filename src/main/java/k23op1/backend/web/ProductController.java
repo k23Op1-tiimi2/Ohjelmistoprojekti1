@@ -150,6 +150,7 @@ public class ProductController {
                 .orElseThrow(() -> new IllegalArgumentException("Invalid manufacturer Id:" + id));
         List<Product> products = productRepository.findByManufacturer(manufacturer);
         model.addAttribute("products", products);
+        model.addAttribute("manufacturer", manufacturer);
         return "productsbymanufacturer";
     }
 

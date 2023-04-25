@@ -5,7 +5,8 @@
 <head>
     <title>Product by manufacturer</title>
 </head>
-<h1>'s Products</h1>
+<h1 th:text="${manufacturer.name} + '\'s Products'">Products by Manufacturer</h1>
+</head> 
 
 <body>
     <a th:href="@{/homepage}" style="margin: 10px;">
