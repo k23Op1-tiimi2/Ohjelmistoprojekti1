@@ -18,13 +18,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 //import org.springframework.web.servlet.ModelAndView;
 
+
 import jakarta.validation.Valid;
 import k23op1.backend.domain.Manufacturer;
 import k23op1.backend.domain.ManufacturerRepository;
 import k23op1.backend.domain.Product;
 import k23op1.backend.domain.ProductRepository;
 
-@CrossOrigin
+@CrossOrigin()
 @Controller
 public class ProductController {
 

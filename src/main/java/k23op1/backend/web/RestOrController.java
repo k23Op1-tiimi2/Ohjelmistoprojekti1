@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -21,6 +22,7 @@ import k23op1.backend.domain.Product;
 import k23op1.backend.domain.ProductRepository;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 public class RestOrController {
 
     private static final Logger log = LoggerFactory.getLogger(RestOrController.class);
