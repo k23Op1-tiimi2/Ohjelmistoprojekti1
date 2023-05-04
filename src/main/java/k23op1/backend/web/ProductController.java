@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 //import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 //import org.springframework.web.servlet.ModelAndView;
@@ -84,19 +85,24 @@ public class ProductController {
      * }
      */
 
-    @RequestMapping(value = "edit/{id}")
-    public String editProduct(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult,
-            @PathVariable("id") Long productId, Model model) {
-        System.out.println("controller" + productId);
-        if (bindingResult.hasErrors()) {
-            log.info("Error");
-            model.addAttribute("manufacturers", manufacturerRepository.findAll());
-            return "editproduct";
-        }
-        model.addAttribute("product", (productRepository.findById(productId)).get());
+     @GetMapping("/edit/{id}")
+     public String showEditForm(@PathVariable("id") Long productId, Model model) {
+         Product product = productRepository.findById(productId).orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + productId));
+         model.addAttribute("product", product);
+         model.addAttribute("manufacturers", manufacturerRepository.findAll());
+         return "editproduct";
+     }
+
+     @PostMapping("/edit/{id}")
+public String editProduct(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult, @PathVariable("id") Long productId, Model model) {
+    if (bindingResult.hasErrors()) {
+        log.info("Error");
         model.addAttribute("manufacturers", manufacturerRepository.findAll());
         return "editproduct";
     }
+    productRepository.save(product); 
+    return "redirect:/products"; 
+}
 
     /*
      * @RequestMapping(value = "/edit/{productId}", method = RequestMethod.GET)
