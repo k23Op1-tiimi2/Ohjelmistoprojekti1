@@ -20,11 +20,11 @@
             <tr th:each="manufacturer: ${manufacturers}">
                 <td th:text="${manufacturer.name}">Manufacturer name</td>
                 <td>
-                    <form
+                    <!--<form
                         th:action="@{/editmanufacturer/{manufacturerid}(manufacturerid=${manufacturer.manufacturerid})}"
                         method="get">
                         <button type="submit" class="btn btn-primary" style="margin: 10px;">Edit</button>
-                    </form>
+                    </form>-->
                     <form
                         th:action="@{/deletemanufacturer/{manufacturerid}(manufacturerid=${manufacturer.manufacturerid})}"
                         method="get">
