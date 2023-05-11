@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 //import org.springframework.web.servlet.ModelAndView;
 
-
 import jakarta.validation.Valid;
 import k23op1.backend.domain.Manufacturer;
 import k23op1.backend.domain.ManufacturerRepository;
@@ -85,24 +84,26 @@ public class ProductController {
      * }
      */
 
-     @GetMapping("/edit/{id}")
-     public String showEditForm(@PathVariable("id") Long productId, Model model) {
-         Product product = productRepository.findById(productId).orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + productId));
-         model.addAttribute("product", product);
-         model.addAttribute("manufacturers", manufacturerRepository.findAll());
-         return "editproduct";
-     }
-
-     @PostMapping("/edit/{id}")
-public String editProduct(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult, @PathVariable("id") Long productId, Model model) {
-    if (bindingResult.hasErrors()) {
-        log.info("Error");
+    @GetMapping("/edit/{id}")
+    public String showEditForm(@PathVariable("id") Long productId, Model model) {
+        Product product = productRepository.findById(productId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + productId));
+        model.addAttribute("product", product);
         model.addAttribute("manufacturers", manufacturerRepository.findAll());
         return "editproduct";
     }
-    productRepository.save(product); 
-    return "redirect:/products"; 
-}
+
+    @PostMapping("/edit/{id}")
+    public String editProduct(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult,
+            @PathVariable("id") Long productId, Model model) {
+        if (bindingResult.hasErrors()) {
+            log.info("Error");
+            model.addAttribute("manufacturers", manufacturerRepository.findAll());
+            return "editproduct";
+        }
+        productRepository.save(product);
+        return "redirect:/products";
+    }
 
     /*
      * @RequestMapping(value = "/edit/{productId}", method = RequestMethod.GET)
@@ -160,7 +161,6 @@ public String editProduct(@Valid @ModelAttribute("product") Product product, Bin
         model.addAttribute("manufacturer", manufacturer);
         return "productsbymanufacturer";
     }
-
 
     @RequestMapping("/homepage")
     public String homePage() {

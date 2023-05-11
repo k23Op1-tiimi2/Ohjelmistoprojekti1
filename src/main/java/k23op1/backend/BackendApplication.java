@@ -11,6 +11,8 @@ import k23op1.backend.domain.Manufacturer;
 import k23op1.backend.domain.ManufacturerRepository;
 import k23op1.backend.domain.Product;
 import k23op1.backend.domain.ProductRepository;
+import k23op1.backend.domain.Reservation;
+import k23op1.backend.domain.ReservationRepository;
 
 @SpringBootApplication
 public class BackendApplication {
@@ -21,9 +23,15 @@ public class BackendApplication {
 	}
 
 	@Bean
-	public CommandLineRunner demo(ProductRepository productRepository, ManufacturerRepository manufacturerRepository) {
+	public CommandLineRunner demo(ProductRepository productRepository, ManufacturerRepository manufacturerRepository,
+			ReservationRepository reservationRepository) {
 
 		return (args) -> {
+			Reservation reservation1 = new Reservation("Sipe Santapukki", "sipe@gmail.com", 050123456);
+			Reservation reservation2 = new Reservation("Toni Virtanen", "toni@gmail.com", 050321321);
+			reservationRepository.save(reservation1);
+			reservationRepository.save(reservation2);
+
 			Manufacturer manufacturer1 = new Manufacturer("Adidas");
 			Manufacturer manufacturer2 = new Manufacturer("Puma");
 			manufacturerRepository.save(manufacturer1);
