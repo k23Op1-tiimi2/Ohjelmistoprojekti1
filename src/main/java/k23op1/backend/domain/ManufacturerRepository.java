@@ -7,6 +7,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface ManufacturerRepository extends CrudRepository<Manufacturer, Long> {
     List<Manufacturer> findByName(String name);
-    Optional<Manufacturer> findById (Long manufacturerid);
+   // Optional<Manufacturer> findById (Long manufacturerid);
 
 }

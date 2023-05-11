@@ -20,6 +20,8 @@ import k23op1.backend.domain.Manufacturer;
 import k23op1.backend.domain.ManufacturerRepository;
 import k23op1.backend.domain.Product;
 import k23op1.backend.domain.ProductRepository;
+import k23op1.backend.domain.Reservation;
+import k23op1.backend.domain.ReservationRepository;
 
 @RestController
 @CrossOrigin(origins = "http://localhost:3000")
@@ -32,6 +34,9 @@ public class RestOrController {
 
     @Autowired
     ManufacturerRepository manufacturerRepository;
+
+    @Autowired
+    ReservationRepository reservationRepository;
     
      // REST-metodi, find all products
      @GetMapping(value = "/products")
@@ -44,11 +49,20 @@ public class RestOrController {
  
      // REST-metodi, find all manufacturers
      @GetMapping(value = "/manufacturers")
-     public @ResponseBody List<Manufacturer> findAllManufaccturers() {
+     public @ResponseBody List<Manufacturer> findAllManufacturers() {
 
         log.info("find all manufacturers");
 
          return (List<Manufacturer>) manufacturerRepository.findAll();
+     }
+
+     // REST-metodi, find the products of one manufacturer
+     @GetMapping("/manufacturers/id/{id}")
+        Optional<Manufacturer> getOneManufacturer(@PathVariable Long id) {
+
+        log.info("find the products of one manufacturer, id= " + id);
+
+        return manufacturerRepository.findById(id);
      }
 
      // REST-metodi, add new product
@@ -90,6 +104,47 @@ public class RestOrController {
         log.info("find product, type = " + type);
         
         return productRepository.findByType(type);
+    }
+
+     // REST-metodi, find all reservations
+     @GetMapping(value = "/reservations")
+     public @ResponseBody List<Reservation> findAllReservations() {
+
+        log.info("find all reservations");
+
+         return (List<Reservation>) reservationRepository.findAll();
+     }
+
+     // REST-metodi, add new reservation
+    @PostMapping("reservations")
+    Reservation newReservation(@RequestBody Reservation newReservation) {
+        log.info("save new reservation " + newReservation);
+        return reservationRepository.save(newReservation);
+    }
+
+    // REST-metodi, edit existing reservation
+    @PutMapping("/reservations/{id}")
+    Reservation editReservation(@RequestBody Reservation editedReservation, @PathVariable Long id) {
+        log.info("edit reservation " + editedReservation);
+        editedReservation.setReservationId(id);
+        return reservationRepository.save(editedReservation);
+    }
+
+    // REST-metodi, delete reservation
+    @DeleteMapping("/reservations/{id}")
+    public Iterable<Reservation> deleteReservation(@PathVariable Long id) {
+        log.info("delete reservation, id = " + id);
+        reservationRepository.deleteById(id);
+        return reservationRepository.findAll();
+    }
+
+    // REST-metodi, find one reservation and return it
+    @GetMapping("/reservations/id/{id}")
+    Optional<Reservation> getOneReservation(@PathVariable Long id) {
+
+        log.info("find reservation, id = " + id);
+
+        return reservationRepository.findById(id);
     }
 }
 
