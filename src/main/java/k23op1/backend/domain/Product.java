@@ -1,8 +1,11 @@
 package k23op1.backend.domain;
 
+import org.springframework.data.rest.core.annotation.RestResource;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -25,28 +28,32 @@ public class Product {
     private double price;
     private String countryofproduction;
     private String description;
-    
-    
-    
+
     @ManyToOne
     @JsonIgnoreProperties("products")
     @JoinColumn(name = "manufacturerid") // Foreign key - määritys
-    // @NotEmpty(message = "Manufacrurer cannot be empty")
+    // @NotEmpty(message = "Manufacturer cannot be empty")
     private Manufacturer manufacturer;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    // @JsonIgnoreProperties
+    @JoinColumn(name = "reservationId") // Foreign key -määritys
+    private Reservation reservation;
 
     public Product() {
 
     }
 
-    public Product(String name, String type, String size, String color, double price, String countryofproduction,  String description,  Manufacturer manufacturer) {
+    public Product(String name, String type, String size, String color, double price, String countryofproduction,
+            String description, Manufacturer manufacturer) {
         super();
         this.name = name;
         this.type = type;
         this.size = size;
         this.color = color;
         this.price = price;
-        this.countryofproduction=countryofproduction;
-        this.description=description;
+        this.countryofproduction = countryofproduction;
+        this.description = description;
         this.manufacturer = manufacturer;
     }
 
@@ -98,28 +105,22 @@ public class Product {
         this.price = price;
     }
 
-    
-    public void setCountryofproduction (String countryofproduction){
-        this.countryofproduction=countryofproduction;
+    public void setCountryofproduction(String countryofproduction) {
+        this.countryofproduction = countryofproduction;
     }
-    
+
     public String getCountryofproduction() {
         return countryofproduction;
     }
-    
-    
-    
-    public void setDescription (String description){
-        this.description=description;
+
+    public void setDescription(String description) {
+        this.description = description;
     }
-    
+
     public String getDescription() {
         return description;
     }
-    
-    
-    
-    
+
     public void setManufacturer(Manufacturer manufacturer) {
         this.manufacturer = manufacturer;
     }
@@ -128,17 +129,27 @@ public class Product {
         return manufacturer;
     }
 
+    public Reservation getReservation() {
+        return reservation;
+    }
+
+    public void setReservation(Reservation reservation) {
+        this.reservation = reservation;
+    }
+
     @Override
     public String toString() {
         if (this.manufacturer != null)
             return "Product [id = " + id + " name = " + name + " type = " + type + " size = " + size + " color = "
                     + color
-                    + " price = " + price + "countryofproduction = " + countryofproduction + "description = " + description + "manufacturer=" + manufacturer + "]";
+                    + " price = " + price + "countryofproduction = " + countryofproduction + "description = "
+                    + description + "manufacturer=" + manufacturer + "]";
 
         else
             return "Product [id = " + id + " name = " + name + " type = " + type + " size = " + size + " color = "
                     + color
-                    + " price = " + price + "countryofproduction = " + countryofproduction + "description = " + description ;
+                    + " price = " + price + "countryofproduction = " + countryofproduction + "description = "
+                    + description;
 
     }
 

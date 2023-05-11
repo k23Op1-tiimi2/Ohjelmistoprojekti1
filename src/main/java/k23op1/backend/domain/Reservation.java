@@ -1,18 +1,31 @@
 package k23op1.backend.domain;
 
+import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 
 @Entity
 public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
+    private Long reservationId;
     private String custName;
     private String email;
     private int phone;
+
+    // Reservation 1--*
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "reservation")
+    @JsonIgnore
+    private List<Product> products;
 
     public Reservation() {
 
@@ -25,12 +38,12 @@ public class Reservation {
         this.phone = phone;
     }
 
-    public Long getId() {
-        return id;
+    public Long getReservationId() {
+        return reservationId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setReservationId(Long reservationId) {
+        this.reservationId = reservationId;
     }
 
     public String getCustName() {
@@ -57,9 +70,18 @@ public class Reservation {
         this.phone = phone;
     }
 
+    public List<Product> getProducts() {
+        return products;
+    }
+
+    public void setProducts(List<Product> products) {
+        this.products = products;
+    }
+
     @Override
     public String toString() {
-        return "Reservation [id = " + id + " customer name = " + custName + " email = " + email + " phone = " + phone
+        return "Reservation [id = " + reservationId + " customer name = " + custName + " email = " + email + " phone = "
+                + phone
                 + "]";
     }
 }
