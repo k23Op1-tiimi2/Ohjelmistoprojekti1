@@ -50,6 +50,13 @@ public class ProductController {
         return "productlist";
     }
 
+    @RequestMapping(value = "/quantities", method = RequestMethod.GET)
+    public String quantities(Model model) {
+        List<Product> products = (List<Product>) productRepository.findAll();
+        model.addAttribute("products", products);
+        return "quantities";
+    }
+
     @RequestMapping(value = "/addproduct", method = RequestMethod.GET)
     public String addProductForm(Model model) {
         model.addAttribute("product", new Product());

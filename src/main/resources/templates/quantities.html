@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
+<head>
+	<title>Quantities</title>
+
+</head>
+
+<body>
+	<h1>Quantities</h1>
+	<a th:href="@{/homepage}" style="margin: 10px;">
+		<button style="padding: 5px; margin: 10px;" class="btn btn-primary">Main page</button>
+	</a>
+	<table class="table table-striped">
+		<thead>
+			<tr>
+				<th>Name</th>
+				<th>Quantity</th>
+				<th>Actions</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="product : ${products}">
+				<td th:text="${product.name}"></td>
+				<td th:text="${product.quantity}"></td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+
+</html>
