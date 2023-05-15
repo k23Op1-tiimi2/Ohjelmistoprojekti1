@@ -26,6 +26,7 @@ public class Product {
     private String color;
     @NotNull
     private double price;
+    private int quantity;
     private String countryofproduction;
     private String description;
 
@@ -44,7 +45,7 @@ public class Product {
 
     }
 
-    public Product(String name, String type, String size, String color, double price, String countryofproduction,
+    public Product(String name, String type, String size, String color, double price, int quantity, String countryofproduction,
             String description, Manufacturer manufacturer) {
         super();
         this.name = name;
@@ -52,6 +53,7 @@ public class Product {
         this.size = size;
         this.color = color;
         this.price = price;
+        this.quantity = quantity;
         this.countryofproduction = countryofproduction;
         this.description = description;
         this.manufacturer = manufacturer;
@@ -105,6 +107,14 @@ public class Product {
         this.price = price;
     }
 
+    public int getQuantity() {
+        return quantity;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
+    }
+
     public void setCountryofproduction(String countryofproduction) {
         this.countryofproduction = countryofproduction;
     }
@@ -142,13 +152,13 @@ public class Product {
         if (this.manufacturer != null)
             return "Product [id = " + id + " name = " + name + " type = " + type + " size = " + size + " color = "
                     + color
-                    + " price = " + price + "countryofproduction = " + countryofproduction + "description = "
+                    + " price = " + price + " quantity = " + quantity + "countryofproduction = " + countryofproduction + "description = "
                     + description + "manufacturer=" + manufacturer + "]";
 
         else
             return "Product [id = " + id + " name = " + name + " type = " + type + " size = " + size + " color = "
                     + color
-                    + " price = " + price + "countryofproduction = " + countryofproduction + "description = "
+                    + " price = " + price + " quantity = " + quantity + "countryofproduction = " + countryofproduction + "description = "
                     + description;
 
     }

@@ -29,7 +29,9 @@
 		<div th:if="${#fields.hasErrors('price')}" th:errors="*{price}">Error</div>
 		<input type="text" id="price" name="price" th:field="*{price}"><br><br>
 
-		
+		<label for="quantity">Quantity:</label>
+		<div th:if="${#fields.hasErrors('quantity')}" th:errors="*{quantity}">Error</div>
+		<input type="text" id="quantity" name="quantity" th:field="*{quantity}"><br><br>
 		
 		<label for="countryofproduction">Country of production:</label>
 		<input type="text" id="countryofproduction" name="countryofproduction" th:field="*{countryofproduction}"><br><br>

@@ -40,10 +40,10 @@ public class BackendApplication {
 			manufacturerRepository.save(manufacturer2);
 
 			productRepository
-					.save(new Product("Kiva", "shirt", "M", "blue", 15.15, "Finland", "Joku paita", manufacturer1));
-			productRepository.save(new Product("Ok", "shirt", "M", "red", 10.10, "Sweden", "någontin", manufacturer2));
+					.save(new Product("Kiva", "shirt", "M", "blue", 15.15, 20, "Finland", "Joku paita", manufacturer1));
+			productRepository.save(new Product("Ok", "shirt", "M", "red", 10.10, 20, "Sweden", "någontin", manufacturer2));
 			productRepository
-					.save(new Product("Sho", "shoes", "S", "yellow", 15.90, "Sweden", "någontin", manufacturer2));
+					.save(new Product("Sho", "shoes", "S", "yellow", 15.90, 20, "Sweden", "någontin", manufacturer2));
 
 			for (Product product : productRepository.findAll()) {
 				log.info(product.toString());
