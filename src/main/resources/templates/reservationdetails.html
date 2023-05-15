@@ -9,6 +9,7 @@
 </head>
 
 <body>
+
     <!--EN TIEDÄ MIKSI TÄSSÄ EKASSA TABLESSA EI NÄY NOI TIEDOT-->
     <table class="table table-striped">
         <thead>
@@ -55,14 +56,24 @@
             </tr>
             <tr>
                 <td>Status:</td>
-                <td th:text="${reservation.status}"></td>
+                <td
+                    th:text="${reservation.status == 'DELIVERED' ? 'Delivered' : (reservation.status == 'CANCELLED' ? 'Cancelled' : 'Pending')}">
+                </td>
             </tr>
         </table>
-        <form th:action="@{/reserve}" method="post">
-            <!--  <input type="hidden" name="reservationId" th:value="${reservation.reservationId}" />-->
+        <form th:action="@{/reservationdetails/{reservationId}}" th:object="${reservation}" method="post">
+            <input type="hidden" th:field="*{reservationId}" />
+            <select th:field="*{status}">
+                <option value="DELIVERED">Delivered</option>
+                <option value="CANCELLED">Cancelled</option>
+            </select>
+            <button type="submit">Update</button>
+        </form>
+        <!--  <form th:action="@{/reserve}" method="post">
+             <input type="hidden" name="reservationId" th:value="${reservation.reservationId}" />
             <button type="submit" name="status" value="delivered">Order is delivered</button>
             <button type="submit" name="status" value="cancelled">Order is cancelled</button>
-        </form>
+        </form>-->
     </table>
     <a th:href="@{/homepage}" style="margin: 10px;">
         <button style="padding: 5px; margin: 10px;" class="btn btn-primary">Main page</button>
