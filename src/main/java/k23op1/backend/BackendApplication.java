@@ -27,9 +27,11 @@ public class BackendApplication {
 			ReservationRepository reservationRepository) {
 
 		return (args) -> {
-			Reservation reservation1 = new Reservation("Sipe Santapukki", "sipe@gmail.com", null, "jacket", "gsg",
+			Reservation reservation1 = new Reservation("Sipe Santapukki", "sipe@gmail.com", "040444555", "jacket",
+					"Raincoat",
 					"S", "red", 50, null);
-			Reservation reservation2 = new Reservation("Toni Virtanen", "toni@gmail.com", null, "shoes", "shoes", "M",
+			Reservation reservation2 = new Reservation("Toni Virtanen", "toni@gmail.com", "0505554444", "shoes",
+					"shoes", "M",
 					"Black", 25, null);
 			reservationRepository.save(reservation1);
 			reservationRepository.save(reservation2);
@@ -41,7 +43,8 @@ public class BackendApplication {
 
 			productRepository
 					.save(new Product("Kiva", "shirt", "M", "blue", 15.15, 20, "Finland", "Joku paita", manufacturer1));
-			productRepository.save(new Product("Ok", "shirt", "M", "red", 10.10, 20, "Sweden", "någontin", manufacturer2));
+			productRepository
+					.save(new Product("Ok", "shirt", "M", "red", 10.10, 20, "Sweden", "någontin", manufacturer2));
 			productRepository
 					.save(new Product("Sho", "shoes", "S", "yellow", 15.90, 20, "Sweden", "någontin", manufacturer2));
 

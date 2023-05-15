@@ -20,7 +20,7 @@ public class Reservation {
     private Long reservationId;
     private String custName;
     private String email;
-    private Long phone;
+    private String phone;
     private String name;
     private String type;
     private String size;
@@ -37,7 +37,8 @@ public class Reservation {
 
     }
 
-    public Reservation(String custName, String email, Long phone, String name, String type, String size, String color,
+    public Reservation(String custName, String email,
+            String phone, String name, String type, String size, String color,
             double price, String status) {
         super();
         this.custName = custName;
@@ -76,11 +77,11 @@ public class Reservation {
         this.email = email;
     }
 
-    public Long getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(Long phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
@@ -149,7 +150,7 @@ public class Reservation {
                 + "]";
     }
 
-    public static void updateReservationStatus(Long id, String status2) {
+    public static void updateReservationStatus(Long id, String status) {
     }
 
     public boolean isDelivered() {
