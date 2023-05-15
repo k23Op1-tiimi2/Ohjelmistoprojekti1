@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Manufacturer</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    
+    <!-- Content Security Policy meta tag -->
+    <meta http-equiv="Content-Security-Policy" content="script-src 'self' https://cdn.segment.com;">
+</head>
+
+<body>
+    <div class="container">
+        <h2>Edit manufacturer</h2>
+        <a th:href="@{/homepage}" style="margin: 10px;">
+            <button style="padding: 5px; margin: 10px;" class="btn btn-primary">Main page</button>
+        </a>
+        <div class="col-md-4">
+            <form th:object="${manufacturer}" th:action="@{/editmanufacturer/{manufacturerid}(manufacturerid=${manufacturer.id})}" action="#" method="post">
+                <label for="name">Manufacturer Name</label>
+                <input type="text" id="ManufacturerId" th:field="*{name}" class="form-control" />
+                <div style="clear: both; display: block; height: 10px;"></div>
+                <input type="submit" class="btn btn-primary" value="Save" />
+                <button type="button" onClick="window.history.back()" class="btn btn-danger">Cancel</button>	
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>

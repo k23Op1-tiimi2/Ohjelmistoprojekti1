@@ -36,6 +36,12 @@
                         <button type="submit" class="btn btn-primary" style="margin: 10px;">Products</button>
                     </form>
 
+                    <form th:action="@{/editmanufacturer/{manufacturerid}(manufacturerid=${manufacturer.manufacturerid})}" method="get">
+                        <button type="submit" class="btn btn-primary" style="margin: 10px;">Edit</button>
+                    </form>
+               
+               
+               
                 </td>
             </tr>
         </tbody>
