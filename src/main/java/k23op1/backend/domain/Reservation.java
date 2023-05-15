@@ -148,4 +148,15 @@ public class Reservation {
                 + " price = " + price + " status = " + status
                 + "]";
     }
+
+    public static void updateReservationStatus(Long id, String status2) {
+    }
+
+    public boolean isDelivered() {
+        return false;
+    }
+
+    public boolean isCancelled() {
+        return false;
+    }
 }

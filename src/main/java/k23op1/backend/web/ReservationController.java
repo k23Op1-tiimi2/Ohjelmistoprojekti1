@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -43,63 +44,64 @@ public class ReservationController {
     }
 
     @GetMapping("/reservationdetails/{id}")
-    public String showReservationDetails(@PathVariable("id") long reservatioId, Model model) {
-        Reservation reservation = reservationRepository.findById(reservatioId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid reservation Id:" + reservatioId));
+    public String showReservationDetails(@PathVariable("id") long reservationId, Model model) {
+        Reservation reservation = reservationRepository.findById(reservationId)
+                .orElseThrow(() -> new IllegalArgumentException("Invalid reservation Id:" + reservationId));
         model.addAttribute("reservation", reservation);
         // model.addAttribute("reservation",
         // (reservationRepository.findById(reservationId)).get());
+        if (reservation.isDelivered()) {
+            reservation.setStatus("DELIVERED");
+        } else if (reservation.isCancelled()) {
+            reservation.setStatus("CANCELLED");
+        } else {
+            reservation.setStatus("PENDING");
+        }
         return "reservationdetails";
     }
 
-    JButton button = new JButton("Button");
+    @PostMapping("/reservationdetails/{id}")
+    public String updateReservationStatus(@PathVariable("id") Long reservationId,
+            @ModelAttribute("reservation") Reservation reservation) {
 
-    @PostMapping("/reserve")
-    public String reserve(@RequestParam("status") String status) {
-        // Do something with the status here
-        button.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                if (button.getText().equals("Cancelled")) {
-                    button.setText("Cancelled");
-                    log.info("Cancelled");
-                    // Send a POST request to the "/reserve" endpoint with a status of "reserved"
-                } else {
-                    button.setText("Delivered");
-                    log.info("Delivered");
-                    // Send a POST request to the "/reserve" endpoint with a status of "not
-                    // reserved"
-                }
-            }
-        });
+        Reservation.updateReservationStatus(reservationId, reservation.getStatus());
 
-        /*
-         * if (status.equals("delivered")) {
-         * // Do something with the delivered status here
-         * log.info("delivered");
-         * } else if (status.equals("cancelled")) {
-         * // Do something with the cancelled status here
-         * log.info("Cancelled");
-         * } else {
-         * // Handle invalid status here
-         * }
-         */
-        return "redirect:/reservationlist";
+        return "redirect:/reservationdetails/{id}";
     }
 
+    // JButton button = new JButton("Button");
+
     /*
-     * @GetMapping("/reservationdetails/{id}")
-     * public String getReservationsByCustomer(@PathVariable("id") Long id, Model
-     * model) {
-     * List<Product> products = (List<Product>) productRepository.findAll();
-     * Reservation reservation = reservationRepository.findById(id)
-     * .orElseThrow(() -> new IllegalArgumentException("Invalid Reservation Id:" +
-     * id));
-     * List<Reservation> reservations =
-     * reservationRepository.findByReservation(reservation);
-     * model.addAttribute("products", products);
-     * model.addAttribute("reservations", reservations);
-     * return "reservationdetails";
+     * @PostMapping("/reserve")
+     * public String reserve(@RequestParam("status") String status) {
+     * // Do something with the status here
+     * button.addActionListener(new ActionListener() {
+     * public void actionPerformed(ActionEvent e) {
+     * if (button.getText().equals("Cancelled")) {
+     * button.setText("Cancelled");
+     * log.info("Cancelled");
+     * // Send a POST request to the "/reserve" endpoint with a status of "reserved"
+     * } else {
+     * button.setText("Delivered");
+     * log.info("Delivered");
+     * // Send a POST request to the "/reserve" endpoint with a status of "not
+     * // reserved"
+     * }
+     * }
+     * });
+     */
+    /*
+     * if (status.equals("delivered")) {
+     * // Do something with the delivered status here
+     * log.info("delivered");
+     * } else if (status.equals("cancelled")) {
+     * // Do something with the cancelled status here
+     * log.info("Cancelled");
+     * } else {
+     * // Handle invalid status here
+     * }
+     * 
+     * return"redirect:/reservationlist";
      * }
      */
-
 }
