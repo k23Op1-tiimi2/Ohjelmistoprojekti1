@@ -69,7 +69,10 @@ public String editManufacturer(@Valid @ModelAttribute("manufacturer") Manufactur
                                BindingResult bindingResult,
                                @PathVariable("manufacturerid") Long manufacturerId,
                                Model model) {
-  
+    if (bindingResult.hasErrors()) {
+        
+        return "editmanufacturer";
+    }
     manufacturerRepository.save(manufacturer);
     return "redirect:/manufacturerlist";
 }
