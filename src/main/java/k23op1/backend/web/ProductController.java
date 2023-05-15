@@ -83,66 +83,6 @@ public class ProductController {
         return "redirect:/productlist";
     }
 
-    /*
-     * @RequestMapping(value = "/save", method = RequestMethod.POST)
-     * public String addProduct(Product product) {
-     * productRepository.save(product);
-     * return "redirect:/productlist";
-     * }
-     */
-
-    @GetMapping("/edit/{id}")
-    public String showEditForm(@PathVariable("id") Long productId, Model model) {
-        Product product = productRepository.findById(productId)
-                .orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" + productId));
-        model.addAttribute("product", product);
-        model.addAttribute("manufacturers", manufacturerRepository.findAll());
-        return "editproduct";
-    }
-
-    @PostMapping("/edit/{id}")
-    public String editProduct(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult,
-            @PathVariable("id") Long productId, Model model) {
-        if (bindingResult.hasErrors()) {
-            log.info("Error");
-            model.addAttribute("manufacturers", manufacturerRepository.findAll());
-            return "editproduct";
-        }
-        productRepository.save(product);
-        return "redirect:/products";
-    }
-
-    /*
-     * @RequestMapping(value = "/edit/{productId}", method = RequestMethod.GET)
-     * public String editProductForm(@PathVariable("productId") Long productId,
-     * Model model) {
-     * Product product = productRepository.findById(productId)
-     * .orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" +
-     * productId));
-     * model.addAttribute("product", product);
-     * return "editproduct";
-     * }
-     */
-
-    /*
-     * @RequestMapping(value = "/editproduct/{productId}", method =
-     * RequestMethod.POST)
-     * public String editProductSubmit(@PathVariable("productId") Long productId,
-     * 
-     * @ModelAttribute("product") Product product) {
-     * Product existingProduct = productRepository.findById(productId)
-     * .orElseThrow(() -> new IllegalArgumentException("Invalid product Id:" +
-     * productId));
-     * existingProduct.setName(product.getName());
-     * existingProduct.setType(product.getType());
-     * existingProduct.setSize(product.getSize());
-     * existingProduct.setColor(product.getColor());
-     * existingProduct.setPrice(product.getPrice());
-     * 
-     * return "redirect:/productlist";
-     * }
-     */
-
     @RequestMapping(value = "/product/{id}", method = RequestMethod.GET)
     public String showProduct(@PathVariable("id") Long productId, Model model) {
 
