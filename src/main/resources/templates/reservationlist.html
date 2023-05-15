@@ -16,6 +16,7 @@
                 <th>Customer Name</th>
                 <th>Email</th>
                 <th>Phone</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
@@ -23,14 +24,14 @@
                 <td th:text="${reservation.custName}"></td>
                 <td th:text="${reservation.email}"></td>
                 <td th:text="${reservation.phone}"></td>
+                <td th:text="${reservation.status}"></td>
                 <td>
-                    <a th:href="@{/reservationdetails}" style="margin: 10px;">
-                        <button style="padding: 5px; margin: 10px;" class="btn btn-primary">Reservation Details</button>
-                    </a>
+
+                    <!--<td><a th:href="@{/reservations/{id}(id=${reservation.reservationId})}">Details</a></td>-->
                 <td>
-                    <!-- <form th:action="@{/reservationdetails/{id}(id=${reservation.id})}" method="get">
-                        <button type="submit" class="btn btn-primary" style="margin: 10px;">Res Details</button>
-                    </form>-->
+                    <form th:action="@{/reservationdetails/{id}(id=${reservation.reservationId})}" method="get">
+                        <button type="submit" class="btn btn-primary" style="margin: 10px;">Reservation Details</button>
+                    </form>
                 </td>
                 </td>
             </tr>

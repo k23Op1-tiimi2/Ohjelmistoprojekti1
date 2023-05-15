@@ -27,8 +27,10 @@ public class BackendApplication {
 			ReservationRepository reservationRepository) {
 
 		return (args) -> {
-			Reservation reservation1 = new Reservation("Sipe Santapukki", "sipe@gmail.com", 050123456);
-			Reservation reservation2 = new Reservation("Toni Virtanen", "toni@gmail.com", 050321321);
+			Reservation reservation1 = new Reservation("Sipe Santapukki", "sipe@gmail.com", null, "jacket", "gsg",
+					"S", "red", 50, null);
+			Reservation reservation2 = new Reservation("Toni Virtanen", "toni@gmail.com", null, "shoes", "shoes", "M",
+					"Black", 25, null);
 			reservationRepository.save(reservation1);
 			reservationRepository.save(reservation2);
 
