@@ -16,12 +16,16 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import jakarta.validation.Valid;
 import k23op1.backend.domain.Manufacturer;
 import k23op1.backend.domain.ManufacturerRepository;
+import k23op1.backend.domain.Product;
+import k23op1.backend.domain.ProductRepository;
 
 @Controller
 public class ManufacturerController {
     @Autowired
     private ManufacturerRepository manufacturerRepository;
 
+   @Autowired ProductRepository productRepository;
+   
     // valmistajalistaus
     @RequestMapping(value = "/manufacturerlist", method = RequestMethod.GET)
     public String manufacturerList(Model model) {
@@ -84,11 +88,23 @@ public String editManufacturer(@Valid @ModelAttribute("manufacturer") Manufactur
     
     
     
-    @RequestMapping(value = "/deletemanufacturer/{manufacturerid}", method = RequestMethod.GET)
-    public String deleteManufacturer(@PathVariable("manufacturerid") Long manufacturerid) {
-        manufacturerRepository.deleteById(manufacturerid);
-        return "redirect:/manufacturerlist"; // jostain syystä menee productlistiin, apuja tähän
+@RequestMapping(value = "/deletemanufacturer/{manufacturerid}", method = RequestMethod.GET)
+public String deleteManufacturer(@PathVariable("manufacturerid") Long manufacturerId, Model model) {
+    Manufacturer manufacturer = manufacturerRepository.findById(manufacturerId)
+            .orElseThrow(() -> new IllegalArgumentException("Invalid manufacturer ID: " + manufacturerId));
+      
+    List<Product> products = productRepository.findByManufacturer(manufacturer);
+    if (!products.isEmpty()) {
+        // If the manufacturer is associated with any products, set an error message and redirect back to the manufacturer list page
+        model.addAttribute("errorMessage", "The Manufacturer is associated with " + products.size() + " Product(s) and cannot be deleted.");
+        model.addAttribute("manufacturers", manufacturerRepository.findAll());
+        return "manufacturerlist";
     }
+
+    manufacturerRepository.deleteById(manufacturerId);
+
+    return "redirect:/manufacturerlist";
+}
 
 
 
